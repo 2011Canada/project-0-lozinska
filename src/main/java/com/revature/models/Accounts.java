@@ -6,7 +6,7 @@ private double accountBalance;
 private String accountType;
 private static int accountNumberGenerator=1000;
 
-public Accounts(int accountNumber,double accountBalance) {
+public Accounts(double accountBalance) {
 	if(accountBalance>=0) {
 		this.accountBalance=accountBalance;
 		this.accountNumber=accountNumberGenerator+1;

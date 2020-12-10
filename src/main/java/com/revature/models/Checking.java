@@ -4,8 +4,8 @@ import com.revature.exceptions.InsuficientAmmountException;
 
 public class Checking extends Accounts{
 
-	public Checking(int accountNumber, double accountBalance) {
-		super(accountNumber, accountBalance);
+	public Checking(double accountBalance) {
+		super(accountBalance);
 		this.setAccountType("checking");
 	}
 	public void withdrawMoney(double ammountToWithdraw) throws InsuficientAmmountException {
