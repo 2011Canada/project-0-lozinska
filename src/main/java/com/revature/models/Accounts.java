@@ -4,13 +4,16 @@ public class Accounts {
 private int accountNumber;
 private double accountBalance;
 private String accountType;
+private BankCustomer bankCustomer;
 private static int accountNumberGenerator=1000;
-
-public Accounts(double accountBalance) {
+public Accounts() {};
+public Accounts(double accountBalance, String username) {
+	if(this.bankCustomer.getUsername().equals(username)) {
 	if(accountBalance>=0) {
 		this.accountBalance=accountBalance;
 		this.accountNumber=accountNumberGenerator+1;
 		accountNumberGenerator++;
+		}
 	}
 	
 }
@@ -32,5 +35,8 @@ public String getAccountType() {
 }
 public void setAccountType(String accountType) {
 	this.accountType = accountType;
+}
+public String display() {
+	return this.getAccountType()+" has balance of "+this.getAccountBalance();
 }
 }

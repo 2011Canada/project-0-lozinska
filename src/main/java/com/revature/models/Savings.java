@@ -4,8 +4,8 @@ import com.revature.exceptions.InsuficientAmmountException;
 
 public class Savings extends Accounts{
 
-	public Savings(double accountBalance) {
-		super(accountBalance);
+	public Savings(double accountBalance,String username) {
+		super(accountBalance,username);
 		this.setAccountType("saving");
 	}
 public void transferMoneyTo(double ammountToTransfer, int accountNumber, Accounts account) throws InsuficientAmmountException{

@@ -5,4 +5,7 @@ public BankEmployee(String username, String password) {
 	super(username,password);
 	this.setRole("employee");
 }
+public String display() {
+	return "Hello "+this.getUsername();
+}
 }
