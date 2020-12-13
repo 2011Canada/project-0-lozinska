@@ -4,12 +4,13 @@ import java.util.List;
 
 import com.revature.exceptions.NoUserFindException;
 
-public class BankUser {
+public class BankUser implements Displayable{
 private String username;
 private String password;
 private String role;
-private List<Accounts> accounts;
+//private List<Accounts> accounts;
 
+public BankUser() {}
 public BankUser(String username,String password) {
 	if(username!=null&&password!=null) {
 		this.username=username;
@@ -34,7 +35,7 @@ public String getRole() {
 public void setRole(String role) {
 	this.role = role;
 }
-public List<Accounts> getAccounts() {
+/*public List<Accounts> getAccounts() {
 	return accounts;
 }
 public void setAccounts(List<Accounts> accounts) {
@@ -49,6 +50,10 @@ public void viewAccountBalance(int accountNumber, String username) throws NoUser
 		}
 	}
 		throw new NoUserFindException();
+}*/
+@Override
+public String display() {
+	return "I am a bank user"+this.getUsername();
 }
 
 }

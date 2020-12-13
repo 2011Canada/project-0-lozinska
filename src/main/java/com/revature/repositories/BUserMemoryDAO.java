@@ -31,7 +31,7 @@ public class BUserMemoryDAO implements BUserDAO{
 
 	public BankUser findUser(String username, String password) throws NoUserFindException{
 		for(BankUser user: usersCatalogue) {
-			if(user.getUsername()==username&&user.getPassword()==password) {
+			if(user.getUsername().equals(username)&&user.getPassword().equals(password)) {
 				return user;
 			}
 		}

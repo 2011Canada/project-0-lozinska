@@ -7,6 +7,6 @@ import com.revature.models.Accounts;
 
 public interface BAccountDAO {
 public Accounts creteAccount();
-public Accounts findOneAccount(int accountNumber) throws AccountDoesNotExistException;
-public List<Accounts> findAllAccounts();
+public Accounts findOneAccount(int accountNumber,int customerID) throws AccountDoesNotExistException;
+public List<Accounts> findAllAccounts(int customerID);
 }
