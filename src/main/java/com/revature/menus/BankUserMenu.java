@@ -128,7 +128,10 @@ public void manageUserInput() throws SQLException, InternalErrorException, NoUse
 			System.out.println("3\t Withdraw money");
 			System.out.println("4\t Transfer money");
 			System.out.println("5\t Back to main menu");
-			accountList=bus.findAllUserAccounts(myUser.getUserId());
+			//check if working
+			int actualID=bus.getCustomerById(myUser.getUserId());
+			//System.out.println("Userid "+myUser.getUserId());
+			accountList=bus.findAllUserAccounts(actualID);
 			input=userIn.nextInt();
 			switch(input) {
 			case 1:
@@ -148,7 +151,7 @@ public void manageUserInput() throws SQLException, InternalErrorException, NoUse
 				accountNumber=userIn.nextInt();
 				System.out.println("Enter amount you want to deposit");
 				double deposit=userIn.nextDouble();
-				myAccount=bus.findOneUserAccount(accountNumber,myUser.getUserId());
+				myAccount=bus.findOneUserAccount(accountNumber,actualID);
 				bus.depositMoney(myAccount, deposit);
 				System.out.println("Account balance of account "+myAccount.getAccountNumber()+" is "+myAccount.getAccountBalance());
 				break;
@@ -160,7 +163,7 @@ public void manageUserInput() throws SQLException, InternalErrorException, NoUse
 				accountNumber=userIn.nextInt();
 				System.out.println("Enter amount you want to withdraw");
 				ammount=userIn.nextDouble();
-				myAccount=bus.findOneUserAccount(accountNumber,myUser.getUserId());
+				myAccount=bus.findOneUserAccount(accountNumber,actualID);
 				bus.withdrawMoney(myAccount, ammount);
 				DecimalFormat df = new DecimalFormat("#.##");
 				String formated=df.format(myAccount.getAccountBalance());
@@ -178,12 +181,13 @@ public void manageUserInput() throws SQLException, InternalErrorException, NoUse
 					System.out.println("Select the account where you want to transfer money");
 					int accountTo=userIn.nextInt();
 					accountsTo=bus.findOneUserAccount(accountTo, myUser.getUserId());
-					System.out.println("Enter amount you want to withdraw");
+					System.out.println("Enter amount you want to transfer");
 					ammount=userIn.nextDouble();
 					bus.transferMoney(accountsFrom, accountsTo, ammount);
-					System.out.println("Account FROM balance"+accountsFrom.getAccountBalance()+" account number is"+accountsFrom.getAccountNumber()+"\n");
-					System.out.println("Account TO balance"+accountsTo.getAccountBalance()+" account number is"+accountsTo.getAccountNumber()+"\n");
+					System.out.println("Account FROM balance "+accountsFrom.getAccountBalance()+" account number is "+accountsFrom.getAccountNumber()+"\n");
+					System.out.println("Account TO balance "+accountsTo.getAccountBalance()+" account number is "+accountsTo.getAccountNumber()+"\n");
 				ammount=0; 
+				break;
 			case 5: mainMenu();
 			check=true;
 			}
@@ -273,6 +277,7 @@ public void manageUserInput() throws SQLException, InternalErrorException, NoUse
 			else {
 				System.out.println("Make valid selection please");
 			}
+			break;
 		case 4:
 			mainMenu();
 			checkE=true;
