@@ -1,23 +1,36 @@
 package com.revature.models;
 
+import com.revature.exceptions.InsuficientAmmountException;
+
 public class Accounts {
+	private int accountId;
+
 private int accountNumber;
 private double accountBalance;
 private String accountType;
-private BankCustomer bankCustomer;
+//private BankCustomer bankCustomer;
 private static int accountNumberGenerator=1000;
-public Accounts() {};
-public Accounts(double accountBalance, String username) {
-	if(this.bankCustomer.getUsername().equals(username)) {
+public Accounts() {
+	this.accountNumber=accountNumberGenerator;
+	accountNumberGenerator++;
+};
+
+public Accounts(double accountBalance, String type) {
 	if(accountBalance>=0) {
 		this.accountBalance=accountBalance;
-		this.accountNumber=accountNumberGenerator+1;
+		this.accountType=type;
+		this.accountNumber=accountNumberGenerator;
+		//this.bankCustomer.setUserId(userId);	
 		accountNumberGenerator++;
-		}
 	}
 	
 }
-
+public int getAccountId() {
+	return accountId;
+}
+public void setAccountId(int accountId) {
+	this.accountId = accountId;
+}
 public int getAccountNumber() {
 	return accountNumber;
 }
