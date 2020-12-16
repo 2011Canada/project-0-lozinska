@@ -9,7 +9,8 @@ import com.revature.models.BankUser;
 
 public interface BUserDAO {
 	
-public BankUser createOne();
+public BankUser createOne(BankUser bu);
 public BankUser findUser(String username, String password) throws NoUserFindException, SQLException, InternalErrorException;
 public List<BankUser> findAll();
+public int findCustomerByBankId(int id);
 }

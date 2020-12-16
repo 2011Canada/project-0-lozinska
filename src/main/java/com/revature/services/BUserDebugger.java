@@ -1,15 +1,18 @@
 package com.revature.services;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 import com.revature.exceptions.AccountDoesNotExistException;
+import com.revature.exceptions.InternalErrorException;
 import com.revature.exceptions.NoUserFindException;
+import com.revature.models.Accounts;
 import com.revature.models.BankUser;
 import com.revature.repositories.*;
 
 public class BUserDebugger {
-public static void main(String[]args) throws NoUserFindException, AccountDoesNotExistException {
+public static void main(String[]args) throws NoUserFindException, AccountDoesNotExistException, SQLException, InternalErrorException {
 	BUserService bus = new BUserServiceImplementation(new BUserPostgresDAO(),new BAccountPostgresDAO());
 	Scanner userIn = new Scanner(System.in);
 	List<BankUser> userCatalogue = bus.seeAllUsers();
@@ -46,6 +49,11 @@ System.out.println("user id ");
 	System.out.println("account number ");
 	String account=userIn.nextLine();
 	int ac=Integer.parseInt(account);
+	Accounts accountUpd=bus.findOneUserAccount(ac, customerID);
+	bus.depositMoney(accountUpd, 55.00);
 	System.out.println(bus.findOneUserAccount(ac,customerID).display());
+
+
 }
+
 }
